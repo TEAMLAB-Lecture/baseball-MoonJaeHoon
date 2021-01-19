@@ -256,63 +256,51 @@ def is_no(one_more_input):
     else:
         return False
     # ==================================
+    
 
 
 def main():
     print("Play Baseball")
-    random_number = str(get_not_duplicated_three_digit_number())
     
-    def recursive_part():
+
+    # ===Modify codes below=============
+    # 위의 코드를 포함하여 자유로운 수정이 가능함
+
+    while True: # 1번 반복문 # 컴퓨터 숫자 만들기
+        random_number = str(get_not_duplicated_three_digit_number())    # 컴퓨터 숫자 만들기
         print("Random Number is : ", random_number)
 
-        # ===Modify codes below=============
-        # 위의 코드를 포함하여 자유로운 수정이 가능함
-
-        while True:
-            while True:
-                user_input_number = input('Input guess number : ')
-                if user_input_number=='0': # 경우에 상관없이 종료
-                    print("Thank you for using this program")
-                    print("End of the Game")
-                    return
-
-                if is_validated_number(user_input_number): # 유효한 숫자 나올때까지 반복
-                    break
-                else:
-                    print("Wrong Input, Input again")
-
-            result_s_b = get_strikes_or_ball(user_input_number, random_number)
-            print(f'Strikes : {result_s_b[0]} , Balls : {result_s_b[1]}')
-            want_break = False
-
-            if result_s_b==[3,0]: ## 맞췄을 때 경우의 수
-                while True:
-                    yes_or_no = input('You win, one more(Y/N)?')
-                    if yes_or_no=='0': # 경우에 상관없이 종료
-                        print("Thank you for using this program")
-                        print("End of the Game")
-                        return
-
-                    elif is_yes(yes_or_no): # 게임 더 하고싶다고 할 때
-                        want_break = False
-                        break
-
-                    elif is_no(yes_or_no): # 게임 더 안하겠다고 할 때
-                        want_break = True
-                        break
-
-                    else:
-                        print('Wrong Input, Input again')
-
-            if want_break: # while문 벗어나고 끝
+        while True: # 2번 반복문 # Input guess number : 
+            one_more_game=False
+            user_input_number = input('Input guess number : ')
+            if user_input_number == '0':    # 0이 입력되면 무조건 전체함수를 끝냄
                 print("Thank you for using this program")
                 print("End of the Game")
                 return
+            elif not is_validated_number(user_input_number):
+                print('Wrong Input, Input again')
+                pass
             else:
-                recursive_part()
+                g_s_b = get_strikes_or_ball(user_input_number, random_number)
+                print(f'Strikes : {g_s_b[0]}, Balls : {g_s_b[1]}')
+
+                if g_s_b==[3,0]:    # 만약 정답일 경우 (3스트라이크일 경우)
+
+                    while True: # 3번 반복문 # 한게임 더할지 묻는 파트
+                        one_more_input = input('You win, one more(Y/N)?')
+                        if one_more_input == '0' or is_no(one_more_input): # 무조건 전체함수를 끝냄
+                            print("Thank you for using this program")
+                            print("End of the Game")
+                            return
+                        elif is_yes(one_more_input):
+                            one_more_game = True                            
+                            break   # 3번 반복문 탈출
+            if one_more_game:
+                break
     # ==================================
-    recursive_part()
-#main()
+    print("Thank you for using this program")
+    print("End of the Game")
+
 
 if __name__ == "__main__":
     main()
