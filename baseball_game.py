@@ -267,19 +267,20 @@ def main():
 
         # ===Modify codes below=============
         # 위의 코드를 포함하여 자유로운 수정이 가능함
-        while True:
-            user_input_number = input('Input guess number : ')
-            if user_input_number=='0': # 경우에 상관없이 종료
-                print("Thank you for using this program")
-                print("End of the Game")
-                return
-
-            if is_validated_number(user_input_number): # 유효한 숫자 나올때까지 반복
-                break
-            else:
-                print("Wrong Input, Input again")
 
         while True:
+            while True:
+                user_input_number = input('Input guess number : ')
+                if user_input_number=='0': # 경우에 상관없이 종료
+                    print("Thank you for using this program")
+                    print("End of the Game")
+                    return
+
+                if is_validated_number(user_input_number): # 유효한 숫자 나올때까지 반복
+                    break
+                else:
+                    print("Wrong Input, Input again")
+
             result_s_b = get_strikes_or_ball(user_input_number, random_number)
             print(f'Strikes : {result_s_b[0]} , Balls : {result_s_b[1]}')
             want_break = False
