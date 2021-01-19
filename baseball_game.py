@@ -288,13 +288,17 @@ def main():
 
                     while True: # 3번 반복문 # 한게임 더할지 묻는 파트
                         one_more_input = input('You win, one more(Y/N)?')
-                        if one_more_input == '0' or is_no(one_more_input): # 무조건 전체함수를 끝냄
+                        if one_more_input == '0' or is_no(one_more_input): # 대답이 NO일때, 혹은 0을 넣었을 때
+                            # 무조건 전체함수를 끝냄
                             print("Thank you for using this program")
                             print("End of the Game")
                             return
-                        elif is_yes(one_more_input):
+
+                        elif is_yes(one_more_input): # 대답이 YES일때
                             one_more_game = True                            
                             break   # 3번 반복문 탈출
+                        else:
+                            print('Wrong Input, Input again')
             if one_more_game:
                 break
     # ==================================
