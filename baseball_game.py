@@ -304,12 +304,12 @@ def main():
                     else:
                         print('Wrong Input, Input again')
 
-        if want_break: # while문 벗어나고 끝
-            print("Thank you for using this program")
-            print("End of the Game")
-            return
-        else:
-            recursive_part()
+            if want_break: # while문 벗어나고 끝
+                print("Thank you for using this program")
+                print("End of the Game")
+                return
+            else:
+                recursive_part()
     # ==================================
     recursive_part()
 #main()
